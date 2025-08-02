@@ -1,0 +1,447 @@
+if game.PlaceId == 18687417158 then
+
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+local Window = WindUI:CreateWindow({
+    Title = "Project mystical V1.03",
+    Icon = "door-open",
+    Author = "Created by Melidon",
+    Folder = "CloudHub",
+    Size = UDim2.fromOffset(580, 312),
+    Transparent = true,
+    Theme = "Dark",
+    Resizable = true,
+    SideBarWidth = 200,
+    Background = "rbxassetid://16898386298", -- rbxassetid only
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            print("clicked")
+            
+        end,
+    },
+    KeySystem = { -- <- ↓ remove this all, if you dont neet the key system
+        Key = { "Free_Ballball555", "Notsofreeballball555" },
+        Note = "Key doesn't Save bc of sum bug",
+        Thumbnail = {
+            Image = "rbxassetid://94143234310932",
+            Title = "",
+        },
+        URL = "https://discord.gg/tKS5wRF8",
+        SaveKey = false,
+    },
+})
+
+WindUI:SetFont("rbxassetid://12187371840")
+
+local Section = Window:Section({
+    Title = "Important stuff",
+    Icon = "align-center",
+    Opened = true,
+})
+
+local MainTab = Window:Tab({
+    Title = "news",
+    Icon = "notebook-text",
+    Locked = false,
+})
+
+local Dialog = Window:Dialog({
+    Icon = "badge-alert",
+    Title = "Thank you for using project-Mystical",
+    Content = "thanks for using our scripts even if their are better ones",
+    Buttons = {
+        {
+            Title = "Yeah ik im the goat",
+            Callback = function()
+                print("Confirmed!")
+            end,
+        },
+        {
+            Title = "Nah i just wanted to check the new upd",
+            Callback = function()
+                print("Cancelled!")
+            end,
+        },
+    },
+})
+
+local Paragraph = MainTab:Paragraph({
+    Title = "update log",
+    Desc = "Revamped Ui, misc no longer buggrd do current gen coming soon sorry lol removed credits lol",
+    Color = "White",
+    Image = "rbxassetid://76563815817965",
+    ImageSize = 30,
+    Thumbnail = "rbxassetid://94834854809533",
+    ThumbnailSize = 80,
+    Locked = false,
+    Buttons = {
+        {
+            Icon = "eye",
+            Title = "Alr",
+            Callback = function() print("1 Button") end,
+        }
+    }
+})
+
+local Section = Window:Section({
+    Title = "Scripts",
+    Icon = "align-center",
+    Opened = false,
+})
+    
+    local SecondTab = Window:Tab({
+    Title = "Generator",
+    Icon = "boom-box",
+    Locked = false,
+})
+    
+    local ThirdTab = Window:Tab({
+    Title = "Esp",
+    Icon = "view",
+    Locked = false,
+})
+    
+    local FourthTab = Window:Tab({
+    Title = "Player",
+    Icon = "user-round-pen",
+    Locked = false,
+})
+    
+    local FifthTab = Window:Tab({
+    Title = "Misc",
+    Icon = "chart-bar-big",
+    Locked = false,
+})
+    
+    local Button = SecondTab:Button({
+    Title = "all generators",
+    Desc = "Does all the generators *bugged*",
+    Locked = false,
+    Callback = function()
+        for i, v in ipairs(Game.Workspace.Map.Ingame.Map:GetChildren()) do
+  if v.Name == "Generator" then
+    if v.Progress.Value ~= 4 then
+      local left = true
+      local right = true
+      local center = true
+      local available = 0
+      for index, value in ipairs(game.Players:GetChildren()) do
+          if value.Character.HumanoidRootPart.CFrame == v.Positions.Left.CFrame then
+              available +=1
+              left = false
+          end
+          if value.Character.HumanoidRootPart.CFrame == v.Positions.Right.CFrame then
+              available +=1
+              right = false
+          end
+          if value.Character.HumanoidRootPart.CFrame == v.Positions.Center.CFrame then
+              available +=1
+              center = false
+          end
+      end
+      if available < 3 then
+          local positiontoUse
+          if left == true then
+              positiontoUse = "Left"
+          elseif right == true then
+              positiontoUse = "Right"
+          elseif center == true then
+              positiontoUse = "Center"
+          end
+          if positiontoUse then
+          game.Players.LocalPlayer.Character.PrimaryPart.CFrame = v.Positions[positiontoUse].CFrame
+          wait(0.2)
+          v.Remotes.RF:InvokeServer("enter")
+          for i = 1, 4 do
+               -- if v.Progress.Value < 4 then
+                print(v.Progress.Value)
+                wait(1.5)
+                v.Remotes.RE:FireServer()
+               -- end
+          end
+          wait(0.2)
+                v.Remotes.RF:InvokeServer("leave")
+        end
+      end
+    end
+  end
+end
+   end,
+  })
+    
+local Button = SecondTab:Button({
+    Title = "Do current generatof",
+    Desc = "Ik your mad its not out yet😢",
+    Locked = true,
+    Callback = function()
+        
+    end
+})
+
+local Button = ThirdTab:Button({
+    Title = "Player+killer+Generator esp",
+    Desc = "Highlights the players and killers",
+    Locked = false,
+    Callback = function()
+        	--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local Players = game.Workspace.Players
+local RunService = game:GetService("RunService")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local killersLabel = Instance.new("TextLabel")
+killersLabel.Size = UDim2.new(0, 200, 0, 50)
+killersLabel.Position = UDim2.new(0, 10, 0, 10)
+killersLabel.BackgroundColor3 = Color3.new(1, 0, 0)
+killersLabel.TextColor3 = Color3.new(1, 1, 1)
+killersLabel.TextScaled = true
+killersLabel.Parent = screenGui
+
+local survivorsLabel = Instance.new("TextLabel")
+survivorsLabel.Size = UDim2.new(0, 200, 0, 50)
+survivorsLabel.Position = UDim2.new(0, 10, 0, 70)
+survivorsLabel.BackgroundColor3 = Color3.new(0, 1, 0)
+survivorsLabel.TextColor3 = Color3.new(1, 1, 1) 
+survivorsLabel.TextScaled = true
+survivorsLabel.Parent = screenGui
+
+local function createOutlineESP(model, outlineColor, fillColor)
+    local highlight = Instance.new("Highlight")
+    highlight.Parent = model
+    highlight.Adornee = model
+    highlight.FillTransparency = 0.75
+    highlight.FillColor = fillColor
+    highlight.OutlineColor = outlineColor
+    highlight.OutlineTransparency = 0 
+end
+
+local function createOutlineESPForGroup(group, outlineColor, fillColor)
+    if group then
+        for _, obj in pairs(group:GetChildren()) do
+            local humanoid = obj:FindFirstChildOfClass("Humanoid")
+            if humanoid and obj:FindFirstChild("HumanoidRootPart") then
+                createOutlineESP(obj, outlineColor, fillColor)
+            end
+        end
+    end
+end
+
+local function highlightGenerators()
+    local generatorsFolder = workspace:FindFirstChild("Map") and 
+                             workspace.Map:FindFirstChild("Ingame") and 
+                             workspace.Map.Ingame:FindFirstChild("Map")
+
+    if generatorsFolder then
+        for _, obj in pairs(generatorsFolder:GetChildren()) do
+            if obj:IsA("Model") and obj.Name == "Generator" then
+                createOutlineESP(obj, Color3.new(1, 1, 0), Color3.new(1, 1, 0.5)) -- Yellow outline, light yellow fill
+            end
+        end
+    end
+end
+
+local function updateESP()
+    while true do
+        -- Clear existing highlights
+        for _, obj in pairs(Players:GetChildren()) do
+            if obj:IsA("Model") and obj:FindFirstChild("Humanoid") then
+                for _, highlight in pairs(obj:GetChildren()) do
+                    if highlight:IsA("Highlight") then
+                        highlight:Destroy()
+                    end
+                end
+            end
+        end
+
+        local killersGroup = Players:FindFirstChild("Killers")
+        if killersGroup then
+            createOutlineESPForGroup(killersGroup, Color3.new(1, 0, 0), Color3.new(1, 0.5, 0.5)) -- Red outline, light red fill
+            killersLabel.Text = "Killers: " .. #killersGroup:GetChildren()
+        else
+            killersLabel.Text = "Killers: 0"
+        end
+
+        local survivorsGroup = Players:FindFirstChild("Survivors")
+        if survivorsGroup then
+            createOutlineESPForGroup(survivorsGroup, Color3.new(0, 1, 0), Color3.new(0.5, 1, 0.5)) -- Green outline, light green fill
+            survivorsLabel.Text = "Survivors: " .. #survivorsGroup:GetChildren()
+        else
+            survivorsLabel.Text = "Survivors: 0"
+        end
+
+        highlightGenerators()
+
+        wait(5) 
+    end
+end
+
+updateESP()
+
+   end,
+})
+
+local Button = ThirdTab:Button({
+    Title = "bloxy cola and medkit esp",
+    Desc = "highlights bloxy cola and medkits ",
+    Locked = false,
+    Callback = function()
+        -- Forsaken ESP for Medkits, BloxyColas, and Builderman's Sentry Summons (May 2025, v2.3.2)
+local workspace = game:GetService("Workspace")
+
+-- Adjust these names if needed for Forsaken's current item naming
+local MEDKIT_NAME = "Medkit"
+local BLOXYCOLA_NAME = "BloxyCola"
+local SENTRY_NAME = "Sentry" -- Or "SentrySummon", adjust if needed
+
+local function highlightItem(item, color)
+    if not item:FindFirstChild("ESPHighlight") then
+        local highlight = Instance.new("Highlight")
+        highlight.Name = "ESPHighlight"
+        highlight.FillTransparency = 0.8
+        highlight.OutlineTransparency = 0
+        highlight.OutlineColor = color
+        highlight.Adornee = item
+        highlight.Parent = item
+    end
+end
+
+local function scanAndHighlight()
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("Model") or obj:IsA("Part") then
+            if obj.Name == MEDKIT_NAME then
+                highlightItem(obj, Color3.fromRGB(0, 255, 0)) -- Green for medkits
+            elseif obj.Name == BLOXYCOLA_NAME then
+                highlightItem(obj, Color3.fromRGB(0, 200, 255)) -- Cyan for BloxyCola
+            elseif obj.Name == SENTRY_NAME then
+                highlightItem(obj, Color3.fromRGB(255, 180, 0)) -- Orange/yellow for sentry summons
+            end
+        end
+    end
+end
+
+-- Initial scan
+scanAndHighlight()
+
+-- Listen for new items spawning
+workspace.DescendantAdded:Connect(function(obj)
+    if obj:IsA("Model") or obj:IsA("Part") then
+        if obj.Name == MEDKIT_NAME then
+            highlightItem(obj, Color3.fromRGB(0, 255, 0))
+        elseif obj.Name == BLOXYCOLA_NAME then
+            highlightItem(obj, Color3.fromRGB(0, 200, 255))
+        elseif obj.Name == SENTRY_NAME then
+            highlightItem(obj, Color3.fromRGB(255, 180, 0))
+        end
+    end
+end)
+
+-- Optional: Refresh every few seconds for dynamic changes
+while true do
+    scanAndHighlight()
+    wait(5)
+end
+
+   end,
+})
+
+local Button = FourthTab:Button({
+    Title = "Inf stamina",
+    Desc = "your stamina never runs out",
+    Locked = false,
+    Callback = function()
+local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
+local m = require(Sprinting)
+m.MaxStamina = 100
+m.StaminaGain = 15
+
+
+
+m.StaminaLoss = 0
+m.SprintSpeed = 29
+
+   end,
+})
+
+local Button = FourthTab:Button({
+    Title = "500 stamina",
+    Desc = "Your stamina is now at 500",
+    Locked = false,
+    Callback = function()
+        local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
+local m = require(Sprinting)
+m.MaxStamina = 500
+m.StaminaGain = 45
+
+
+
+m.StaminaLoss = 15
+m.SprintSpeed = 29
+
+   end,
+})
+
+
+local Button = FourthTab:Button({
+    Title = "Speed+500 stamina",
+    Desc = "you have more speed and more stamina",
+    Locked = false,
+    Callback = function()
+        local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
+local m = require(Sprinting)
+m.MaxStamina = 500
+m.StaminaGain = 45
+
+
+
+m.StaminaLoss = 15
+m.SprintSpeed = 45
+
+   end,
+})
+
+local Button = FourthTab:Button({
+    Title = "inf stamina+speed",
+    Desc = "i got lazy",
+    Locked = false,
+    Callback = function()
+local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
+local m = require(Sprinting)
+m.MaxStamina = 100
+m.StaminaGain = 15
+
+
+
+m.StaminaLoss = 0
+m.SprintSpeed = 35
+
+   end,
+})
+
+
+local Button = FifthTab:Button({
+    Title = "Infinte yield",
+    Desc = "loads infinte yield",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    	end
+})
+
+local Button = FifthTab:Button({
+    Title = "Severhop",
+    Desc = "Bugged rn",
+    Locked = true,
+    Callback = function()
+        
+    end
+})
+
+end
